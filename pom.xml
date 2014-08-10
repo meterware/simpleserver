@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <groupId>com.meterware.simpleserver</groupId>
+    <artifactId>simpleserver</artifactId>
+    <version>0.9.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>SimpleServer</name>
+    <description>A basic NIO server to test socket-based clients</description>
+
+    <url>http://simpleserver.meterware.com</url>
+
+    <licenses>
+        <license>
+            <name>CDDL+GPL</name>
+            <url>https://glassfish.java.net/public/CDDL+GPL.html</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/meterware/simpleserver.git</url>
+        <developerConnection>scm:git:https://github.com/meterware/simpleserver.git</developerConnection>
+        <connection>scm:git:https://github.com/meterware/simpleserver.git</connection>
+    </scm>
+
+    <distributionManagement>
+        <site>
+            <id>github</id>
+            <url>scm:git:https://github.com/meterware/simpleserver.git</url>
+        </site>
+    </distributionManagement>
+
+    <developers>
+        <developer>
+            <id>russgold</id>
+            <name>Russell Gold</name>
+            <roles>
+                <role>lead</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/meterware/simpleserver/issues</url>
+    </issueManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.7</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-compiler-plugin</artifactId>
+                 <version>3.1</version>
+                 <configuration>
+                     <source>1.7</source>
+                     <target>1.7</target>
+                 </configuration>
+             </plugin>
+
+            <!-- prevent the site plugin from deploying to the scm url -->
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+                <executions>
+                    <execution>
+                        <id>stage-for-scm-publish</id>
+                        <phase>post-site</phase>
+                        <goals>
+                            <goal>stage</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- use the scm publish plugin to deploy to GitHub -->
+            <plugin>
+                <artifactId>maven-scm-publish-plugin</artifactId>
+                <version>1.0-beta-2</version>
+                <configuration>
+                    <scmBranch>gh-pages</scmBranch>
+                    <pubScmUrl>scm:git:https://github.com/meterware/simpleserver.git</pubScmUrl>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>scm-publish</id>
+                        <phase>site-deploy</phase>
+                        <goals>
+                            <goal>publish-scm</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.6</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>dependency-info</report>
+                            <report>issue-tracking</report>
+                            <report>scm</report>
+                            <report>license</report>
+                            <report>distribution-management</report>
+                            <report>summary</report>
+                            <report>mailing-list</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
+
+
+
+
+</project>

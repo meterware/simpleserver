@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>SimpleServer: Overview</title>
+</head>
+<body>
+    <h2>Overview</h2>
+    <p>Unit-tests for socket-based clients can be a pain to write. You need some kind of server for them to attach to,
+    and a way to control and detect traffic going both ways. Writing such a server with sockets is reasonably straightforward
+    but requires some nasty thread management. NIO is clearly a better approach, but a fair bit more work, and not worth repeating.
+    SimpleServer provides a very basic NIO implementation, suitable for such testing.</p>
+
+    <p>The server is instantiated with one parameter, a callback listener. The simplest approach is to have the test class implement
+        the <a href="apidocs/index.html">listener interface</a>, so:</p>
+    <div class="source">
+        <pre>SimpleServer server = <b>new</b> SimpleServer(<b>this</b>);</pre>
+    </div>
+
+    <p>The listener will then receive callbacks as the server operates. Most test logic is likely to go in the
+        <a href="apidocs/com/meterware/simpleserver/ServerListener.html#dataRead(com.meterware.simpleserver.Responder)"><code>dataRead</code></a>
+    method, invoked when the server receives data from a socket. The Responder can be used to check the data, close the connection from the server side,
+    or send a reply. Other callbacks allow the test to verify that a connection has been made and that a reply has been sent.</p>
+
+</body>
+</html>
