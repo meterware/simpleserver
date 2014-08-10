@@ -10,7 +10,7 @@
 
     <groupId>com.meterware.simpleserver</groupId>
     <artifactId>simpleserver</artifactId>
-    <version>0.9.0</version>
+    <version>0.9.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>SimpleServer</name>
     <description>A basic NIO server to test socket-based clients</description>
