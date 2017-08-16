@@ -10,7 +10,7 @@
 
     <groupId>com.meterware.simpleserver</groupId>
     <artifactId>simpleserver</artifactId>
-    <version>0.9.1-SNAPSHOT</version>
+    <version>0.5.0</version>
     <packaging>jar</packaging>
     <name>SimpleServer</name>
     <description>A basic NIO server to test socket-based clients</description>
@@ -28,7 +28,8 @@
         <url>https://github.com/meterware/simpleserver.git</url>
         <developerConnection>scm:git:https://github.com/meterware/simpleserver.git</developerConnection>
         <connection>scm:git:https://github.com/meterware/simpleserver.git</connection>
-    </scm>
+      <tag>simpleserver-0.5.0</tag>
+  </scm>
 
     <distributionManagement>
         <site>
